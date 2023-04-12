@@ -9,4 +9,4 @@ var result = Align.Center +
              " Thanks for " +  Chalk.Magenta["installing "] + "it!";
 ```
 
-![](doc/img/sample2.jpg)
+![sample](https://user-images.githubusercontent.com/28961922/231379960-db89f9fb-992a-4848-a376-577e98024335.jpg)
