@@ -51,21 +51,21 @@ namespace RichKokuban
     {
         private int sizePercentage = 100;
 
-        public Size(int sizePercentage)
+        internal Size(int sizePercentage)
         {
             this.sizePercentage = sizePercentage;
         }
 
-        public KokubanString this[string str, int percentage]
+        public KokubanString this[KokubanString str, int percentage]
         {
             get
             {
                 sizePercentage = percentage;
-                return Tagging(new(str));
+                return Tagging(str);
             }
         }
 
-        public KokubanString this[KokubanString str, int percentage] => this[(string)str, percentage];
+        public KokubanString this[string str, int percentage] => this[new KokubanString(str), percentage];
         
         public Size this[int percentage] => new(percentage);
 
@@ -84,23 +84,21 @@ namespace RichKokuban
     {
         private float space;
         
-        public CSpace(float space)
+        internal CSpace(float space)
         {
             this.space = space;
         }
-        
-        public KokubanString this[string str, float space]
+
+        public KokubanString this[string str, float space] => this[new KokubanString(str), space];
+
+        public KokubanString this[KokubanString str, float space]
         {
             get
             {
                 this.space = space;
-                return Tagging(new(str));
+                return Tagging(str);
             }
         }
-        
-        public KokubanString this[KokubanString str, float space] => this[(string)str, space];
-        
-        public CSpace this[float space] => new(space);
         
         protected override KokubanString Tagging(KokubanString str)
         {
