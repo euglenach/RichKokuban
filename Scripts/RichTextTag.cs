@@ -80,6 +80,39 @@ namespace RichKokuban
         }
     }
     
+    public class CSpace : RichTextTag
+    {
+        private float space;
+        
+        public CSpace(float space)
+        {
+            this.space = space;
+        }
+        
+        public KokubanString this[string str, float space]
+        {
+            get
+            {
+                this.space = space;
+                return Tagging(new(str));
+            }
+        }
+        
+        public KokubanString this[KokubanString str, float space] => this[(string)str, space];
+        
+        public CSpace this[float space] => new(space);
+        
+        protected override KokubanString Tagging(KokubanString str)
+        {
+            return $@"<cspace={space}em>" + str + @"</cspace>";
+        }
+
+        internal override KokubanString StartTagging(KokubanString str)
+        {
+            return $@"<cspace={space}em>" + str;
+        }
+    }
+    
     public abstract class RichTextTag
     {
         protected abstract KokubanString Tagging(KokubanString str);

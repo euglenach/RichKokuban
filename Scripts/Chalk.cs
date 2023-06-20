@@ -27,5 +27,9 @@
         #region Size
         public static Size Size => new(100);
         #endregion
+        
+        #region CSpace
+        public static CSpace CSpace => new(0);
+        #endregion
     }
 }
