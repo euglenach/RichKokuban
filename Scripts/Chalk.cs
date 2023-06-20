@@ -23,5 +23,9 @@
         public static readonly Color Cyan = new Color(UnityEngine.Color.cyan);
         public static readonly Color Magenta = new Color(UnityEngine.Color.magenta);
         #endregion
+        
+        #region Size
+        public static Size Size => new(100);
+        #endregion
     }
 }

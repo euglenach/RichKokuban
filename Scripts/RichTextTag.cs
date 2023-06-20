@@ -47,6 +47,39 @@ namespace RichKokuban
         }
     }
     
+    public class Size : RichTextTag
+    {
+        private int sizePercentage = 100;
+
+        public Size(int sizePercentage)
+        {
+            this.sizePercentage = sizePercentage;
+        }
+
+        public KokubanString this[string str, int percentage]
+        {
+            get
+            {
+                sizePercentage = percentage;
+                return Tagging(new(str));
+            }
+        }
+
+        public KokubanString this[KokubanString str, int percentage] => this[(string)str, percentage];
+        
+        public Size this[int percentage] => new(percentage);
+
+        protected override KokubanString Tagging(KokubanString str)
+        {
+            return $@"<size={sizePercentage}%>" + str + @"</size>";
+        }
+
+        internal override KokubanString StartTagging(KokubanString str)
+        {
+            return $@"<size={sizePercentage}%>" + str;
+        }
+    }
+    
     public abstract class RichTextTag
     {
         protected abstract KokubanString Tagging(KokubanString str);
